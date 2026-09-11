@@ -7,7 +7,7 @@ The **Energy Billing Automation System** is fully deployed and operational on th
 
 | Resource                  | Link                                                                              |
 | ------------------------- | --------------------------------------------------------------------------------- |
-| Documentation (GitBook)   | https://defi-energy-supply.gitbook.io/docs/                                       |
+| Documentation (GitBook)   | https://b0gdaniy.gitbook.io/defi-energy-supply/                                   |
 | Source code (contracts)   | https://github.com/passat-b6-tdi/defi-energy-supply                               |
 | Source code (subgraph)    | https://github.com/passat-b6-tdi/defi-energy-supply-subgraph                      |
 | GraphQL playground        | https://api.studio.thegraph.com/query/59239/defi-energy-supply-base-sepolia/version/latest/ |
