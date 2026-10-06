@@ -21,7 +21,7 @@ The Energy Billing Automation System is a comprehensive solution designed to aut
 
 The same contracts are deployed on [Arc](https://docs.arc.io) mainnet, Circle's L1 where USDC is
 also the gas token: consumers pay for energy and for gas in one asset. Addresses, the settlement
-flow and the unit convention are in [Arc mainnet deployment](docs/Arc.md).
+flow and the unit convention are in [Arc mainnet deployment](docs/Arc.md). Live dashboard: [des.b0gdaniy.xyz](https://des.b0gdaniy.xyz/).
 
 ## Live Deployment
 

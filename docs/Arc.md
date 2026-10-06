@@ -4,6 +4,8 @@ DefiEnergySupply runs on [Arc](https://docs.arc.io), Circle's L1 where USDC is t
 token. The contracts are the same Solidity sources as the Base Sepolia deployment, with **no source
 changes**. Only the deployment configuration differs.
 
+Live dashboard: [des.b0gdaniy.xyz](https://des.b0gdaniy.xyz/) reads the contract events directly from Arc mainnet.
+
 ## Why Arc
 
 - **One asset for energy and fees.** Consumers pay for electricity in USDC through `Escrow`, and
