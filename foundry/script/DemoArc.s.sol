@@ -24,12 +24,9 @@ contract DemoArc is Script {
 
     function run() external {
         Main main_ = Main(vm.envAddress("MAIN"));
-        uint256 ownerPk = vm.envUint("PRIVATE_KEY");
-        uint256 supplierPk = vm.envUint("SUPPLIER_PRIVATE_KEY");
-        uint256 consumerPk = vm.envUint("CONSUMER_PRIVATE_KEY");
-        address owner = vm.addr(ownerPk);
-        address supplier = vm.addr(supplierPk);
-        address consumer = vm.addr(consumerPk);
+        address owner = vm.envAddress("DEPLOYER");
+        address supplier = vm.envAddress("SUPPLIER");
+        address consumer = vm.envAddress("CONSUMER");
 
         Main.Tokens memory t = main_.tokens();
         Main.Contracts memory c = main_.contracts();
@@ -39,17 +36,17 @@ contract DemoArc is Script {
         uint256 supplierId = c.register.currentSupplierId();
         uint256 producerId = c.register.currentProducerId();
 
-        vm.startBroadcast(ownerPk);
+        vm.startBroadcast(owner);
         c.register.registerOracleProvider(owner);
         c.register.registerSupplier(supplier);
         c.register.registerProducer(supplier);
         vm.stopBroadcast();
 
-        vm.startBroadcast(supplierPk);
+        vm.startBroadcast(supplier);
         c.register.registerElectricityConsumer(consumer, supplierId);
         vm.stopBroadcast();
 
-        vm.startBroadcast(ownerPk);
+        vm.startBroadcast(owner);
         c.oracle.recordEnergyProductions(producerId, PRODUCTION_WH);
         vm.stopBroadcast();
 
@@ -63,13 +60,13 @@ contract DemoArc is Script {
 
         uint256 fee = main_.fees().amount;
         for (uint256 i; i < readings.length; ++i) {
-            vm.startBroadcast(ownerPk);
+            vm.startBroadcast(owner);
             c.oracle.recordSupplierPrice(supplierId, _qualityPrice(readings[i]));
             c.oracle.recordConsumerConsumptions(consumer, supplierId, readings[i].energyWh);
             vm.stopBroadcast();
 
             uint256 due = c.oracle.debtsUSD(consumer, supplierId) + fee;
-            vm.startBroadcast(consumerPk);
+            vm.startBroadcast(consumer);
             usdc.approve(address(c.escrow), due);
             c.escrow.payForElectricity(supplierId, address(usdc));
             vm.stopBroadcast();

@@ -12,10 +12,9 @@ contract DeployArc is Script, DesDeployer {
 
     function run() external returns (System memory s) {
         require(block.chainid == ARC_MAINNET_CHAIN_ID, "DeployArc: not Arc mainnet (5042)");
-        uint256 pk = vm.envUint("PRIVATE_KEY");
-        address deployer = vm.addr(pk);
+        address deployer = vm.envAddress("DEPLOYER");
 
-        vm.startBroadcast(pk);
+        vm.startBroadcast(deployer);
         s = _deployDes(ARC_USDC, deployer, FEE_AMOUNT);
         vm.stopBroadcast();
 
