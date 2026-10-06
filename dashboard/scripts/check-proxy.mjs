@@ -18,6 +18,10 @@ ok("eth_chainId = 0x13b2", j.result === "0x13b2", j.result);
 ({ j } = await call(rq("eth_blockNumber")));
 ok("eth_blockNumber > START", typeof j.result === "string" && BigInt(j.result) > 24535086n, j.result);
 
+// viem omits params for eth_blockNumber; JSON-RPC 2.0 allows that.
+({ j } = await call({ jsonrpc: "2.0", id: 1, method: "eth_blockNumber" }));
+ok("eth_blockNumber without params", typeof j.result === "string", JSON.stringify(j.error ?? j.result));
+
 ({ j } = await call(rq("eth_getLogs", [{ address: ESCROW, fromBlock: "0x" + (24535086).toString(16), toBlock: "0x" + (24544000).toString(16) }])));
 ok("eth_getLogs escrow >= 5 logs", Array.isArray(j.result) && j.result.length >= 5, String(j.result?.length ?? JSON.stringify(j.error)));
 

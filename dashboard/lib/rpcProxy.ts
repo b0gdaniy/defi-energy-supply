@@ -76,7 +76,9 @@ async function resolveBlock(tag: unknown, fetchImpl: FetchImpl, cache: { latest?
 
 /** Validate a single JSON-RPC request. Returns an error result, or the log range (or null) on success. */
 async function validate(req: any, fetchImpl: FetchImpl): Promise<{ error: RpcResult } | { range: bigint | null }> {
-  const { id, method, params } = req;
+  const { id, method } = req;
+  // JSON-RPC 2.0: params may be omitted (viem omits it for eth_blockNumber).
+  const params = req.params ?? [];
   if (!Array.isArray(params)) return { error: rpcError(id, -32602, "params must be an array") };
   switch (method) {
     case "eth_chainId":
@@ -132,7 +134,7 @@ export async function handleRpc(rawBody: string, fetchImpl: FetchImpl = fetch): 
   const v = await validate(req, fetchImpl);
   if ("error" in v) return v.error;
 
-  const payload = { jsonrpc: "2.0", id: req.id ?? null, method: req.method, params: req.params };
+  const payload = { jsonrpc: "2.0", id: req.id ?? null, method: req.method, params: req.params ?? [] };
   const cacheControl = CACHE[req.method] ?? null;
   let lastErr = "";
   let lastBody: any = null;
