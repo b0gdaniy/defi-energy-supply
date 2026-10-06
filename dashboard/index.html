@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DefiEnergySupply on Arc</title>
+    <meta name="description" content="Live settlement activity of DefiEnergySupply on Arc mainnet, read directly from chain events." />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="icon" type="image/png" href="/des-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="wrap top-row">
+        <img class="logo" src="/des-logo.png" width="56" height="56" alt="DES logo" />
+        <div class="title">
+          <h1>DefiEnergySupply on Arc</h1>
+          <p>Microgrid energy billing settled in native USDC on Arc mainnet</p>
+        </div>
+        <div class="live" aria-live="polite">
+          <span class="dot" id="dot"></span>
+          <div>
+            <div class="live-line">Block <b id="block">...</b></div>
+            <div class="live-sub">Updated <span id="updated">never</span></div>
+          </div>
+          <button id="refresh" type="button">Refresh</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <div id="status" class="status" role="status"></div>
+
+      <section class="hero" aria-labelledby="h-paid">
+        <h2 id="h-paid" class="sr">Totals</h2>
+        <div class="hero-main">
+          <div class="big"><span id="k-paid">...</span><small>USDC paid to suppliers</small></div>
+          <div class="flow" aria-hidden="true">
+            <div class="bar"><i id="bar-prod"></i></div>
+            <div class="bar"><i id="bar-cons"></i></div>
+          </div>
+        </div>
+        <dl class="tiles">
+          <div><dt>Energy produced</dt><dd id="k-prod">...</dd><span id="k-prod-s"></span></div>
+          <div><dt>Energy consumed</dt><dd id="k-cons">...</dd><span id="k-cons-s"></span></div>
+          <div><dt>Fees collected</dt><dd id="k-fees">...</dd><span id="k-fees-s"></span></div>
+          <div><dt>Readings</dt><dd id="k-read">...</dd><span id="k-read-s"></span></div>
+          <div><dt>Payments</dt><dd id="k-pay">...</dd><span id="k-pay-s"></span></div>
+        </dl>
+      </section>
+
+      <section aria-labelledby="h-read">
+        <h2 id="h-read">Consumption readings</h2>
+        <p class="hint">Newest first. Charge is Wh times the price in effect when the reading was recorded.</p>
+        <div class="scroll" tabindex="0" role="region" aria-label="Readings table">
+          <table>
+            <thead>
+              <tr>
+                <th>Block</th><th>Time</th><th>Consumer</th><th class="n">Energy (Wh)</th>
+                <th class="n">Price (USDC/kWh)</th><th class="n">Charge (USDC)</th><th>Reading tx</th><th>Payment tx</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section aria-labelledby="h-con">
+        <h2 id="h-con">Contracts</h2>
+        <ul class="contracts" id="contracts"></ul>
+      </section>
+    </main>
+
+    <footer class="wrap foot">
+      <p>
+        <a href="https://github.com/b0gdaniy/defi-energy-supply/tree/feat/arc-mainnet">Repository</a>
+        <a href="https://github.com/b0gdaniy/defi-energy-supply/blob/feat/arc-mainnet/docs/Arc.md">Arc documentation</a>
+      </p>
+      <p class="note">Research prototype, not audited. Demo readings are simulated.</p>
+    </footer>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

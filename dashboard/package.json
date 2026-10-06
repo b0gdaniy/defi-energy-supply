@@ -1,0 +1,21 @@
+{
+  "name": "des-dashboard",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "check": "tsx scripts/check-totals.mjs",
+    "check:proxy": "tsx scripts/check-proxy.mjs"
+  },
+  "dependencies": {
+    "viem": "2.57.3"
+  },
+  "devDependencies": {
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "vite": "8.3.3"
+  }
+}
