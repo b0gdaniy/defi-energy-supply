@@ -13,7 +13,7 @@ Energy Billing Automation System.
 ## Install
 
 ```bash
-git clone https://github.com/passat-b6-tdi/defi-energy-supply.git
+git clone https://github.com/b0gdaniy/defi-energy-supply.git
 cd defi-energy-supply
 yarn install
 cp .env.example .env   # then fill in the values

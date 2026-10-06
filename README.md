@@ -17,6 +17,13 @@ The Energy Billing Automation System is a comprehensive solution designed to aut
 - Real-time monitoring of electricity consumption
 - Generation of accurate and detailed bills for energy market participants
 
+## Arc Mainnet (USDC-native settlement)
+
+The same contracts are deployed on [Arc](https://docs.arc.io) mainnet, Circle's L1 where USDC is
+also the gas token: consumers pay for energy and for gas in one asset. Addresses, the settlement
+flow, the unit convention and the known limitations are in [Arc mainnet deployment](docs/Arc.md).
+The contracts have not been audited.
+
 ## Live Deployment
 
 DefiEnergySupply is fully deployed and operational on **Base Sepolia** testnet.
@@ -26,8 +33,8 @@ DefiEnergySupply is fully deployed and operational on **Base Sepolia** testnet.
 | Resource                               | Link                                                                                                                                                                                                                                |
 | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Documentation (GitBook)                | https://b0gdaniy.gitbook.io/defi-energy-supply/                                                                                                                                                                                     |
-| Source code (contracts)                | https://github.com/passat-b6-tdi/defi-energy-supply                                                                                                                                                                                 |
-| Source code (subgraph)                 | https://github.com/passat-b6-tdi/defi-energy-supply-subgraph                                                                                                                                                                        |
+| Source code (contracts)                | https://github.com/b0gdaniy/defi-energy-supply                                                                                                                                                                                 |
+| Source code (subgraph)                 | https://github.com/b0gdaniy/defi-energy-supply-subgraph                                                                                                                                                                        |
 | GraphQL playground                     | https://api.studio.thegraph.com/query/59239/defi-energy-supply-base-sepolia/version/latest/                                                                                                                                         |
 | Monitoring dashboard (Grafana, IP)     | [https://13.62.49.115.sslip.io](https://13.62.49.115.sslip.io/d/energy-dashboard/energy-metrics-dashboard?orgId=1&from=now-6h&to=now&timezone=browser&refresh=10s)                                                                  |
 | Monitoring dashboard (Grafana, tunnel) | [ https://laboratories-cult-large-outstanding.trycloudflare.com](https://laboratories-cult-large-outstanding.trycloudflare.com/d/energy-dashboard/energy-metrics-dashboard?orgId=1&from=now-6h&to=now&timezone=browser&refresh=10s) |
@@ -105,7 +112,7 @@ docs/             Generated documentation
 1. Clone the repository:
 
 ```
-git clone https://github.com/passat-b6-tdi/defi-energy-supply.git
+git clone https://github.com/b0gdaniy/defi-energy-supply.git
 cd defi-energy-supply
 ```
 
