@@ -15,3 +15,8 @@ deployed/demo_accounts_*.json
 
 .DS_Store
 
+
+# Foundry (Arc)
+out/
+cache_forge/
+broadcast/*/31337/

@@ -7,6 +7,7 @@
 * [Roadmap](docs/Roadmap.md)
 * [Getting started](docs/GettingStarted.md)
 * [Live deployment](docs/Deployment.md)
+* [Arc mainnet deployment](docs/Arc.md)
 * [Architecture](docs/Architecture.md)
 * [Laboratory stand & telemetry](docs/LabStand.md)
 * [Access control](docs/Roles.md)
