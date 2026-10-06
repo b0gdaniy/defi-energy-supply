@@ -4,7 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>DefiEnergySupply on Arc</title>
-    <meta name="description" content="Live settlement activity of DefiEnergySupply on Arc mainnet, read directly from chain events." />
+    <meta name="description" content="Microgrid energy billing settled in native USDC on Arc mainnet, read live from chain events." />
+    <meta property="og:title" content="DefiEnergySupply on Arc" />
+    <meta property="og:description" content="Microgrid energy billing settled in native USDC on Arc mainnet, read live from chain events." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://des.b0gdaniy.xyz/" />
+    <meta property="og:image" content="https://des.b0gdaniy.xyz/des-logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="DefiEnergySupply on Arc" />
+    <meta name="twitter:description" content="Microgrid energy billing settled in native USDC on Arc mainnet, read live from chain events." />
     <meta name="color-scheme" content="dark light" />
     <link rel="icon" type="image/png" href="/des-logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,7 +27,7 @@
           <h1>DefiEnergySupply on Arc</h1>
           <p>Microgrid energy billing settled in native USDC on Arc mainnet</p>
         </div>
-        <div class="live" aria-live="polite">
+        <div class="live">
           <span class="dot" id="dot"></span>
           <div>
             <div class="live-line">Block <b id="block">...</b></div>
@@ -30,16 +38,28 @@
       </div>
     </header>
 
+    <div class="intro">
+      <div class="wrap">
+        <p>This page reads DES contract events live from Arc mainnet. An oracle records energy production, the supplier price and each consumer's reading; the consumer then pays the debt through the Escrow contract, which forwards native USDC to the supplier. Readings shown come from the demo run of 6 Oct 2026.</p>
+        <p class="intro-links">
+          <a href="https://github.com/b0gdaniy/defi-energy-supply/tree/feat/arc-mainnet">Source code</a>
+          <a href="https://github.com/b0gdaniy/defi-energy-supply/blob/feat/arc-mainnet/docs/Arc.md">Arc deployment docs</a>
+        </p>
+      </div>
+    </div>
+
     <main class="wrap">
-      <div id="status" class="status" role="status"></div>
+      <div id="loading" class="status loading" hidden></div>
+      <div id="status" class="status" role="status" aria-live="polite"></div>
 
       <section class="hero" aria-labelledby="h-paid">
         <h2 id="h-paid" class="sr">Totals</h2>
         <div class="hero-main">
           <div class="big"><span id="k-paid">...</span><small>USDC paid to suppliers</small></div>
-          <div class="flow" aria-hidden="true">
-            <div class="bar"><i id="bar-prod"></i></div>
-            <div class="bar"><i id="bar-cons"></i></div>
+          <div class="flow">
+            <div class="flow-cap">Energy</div>
+            <div class="flow-row"><span class="flow-lab prod" id="lab-prod">Produced ... kWh</span><div class="bar" aria-hidden="true"><i id="bar-prod"></i></div></div>
+            <div class="flow-row"><span class="flow-lab cons" id="lab-cons">Consumed ... kWh</span><div class="bar" aria-hidden="true"><i id="bar-cons"></i></div></div>
           </div>
         </div>
         <dl class="tiles">
@@ -53,32 +73,35 @@
 
       <section aria-labelledby="h-read">
         <h2 id="h-read">Consumption readings</h2>
-        <p class="hint">Newest first. Charge is Wh times the price in effect when the reading was recorded.</p>
+        <p class="hint">Newest first. Charge is Wh times the price in effect when the reading was recorded. Times are UTC.</p>
+        <p id="price-tip" class="tipbox" hidden>Set by the oracle before each reading. In the demo the oracle lowers the price when supplied voltage THD exceeds 8% (EN 50160) and raises it when the consumer's power factor is below 0.95.</p>
         <div class="scroll" tabindex="0" role="region" aria-label="Readings table">
           <table>
             <thead>
               <tr>
                 <th>Block</th><th>Time</th><th>Consumer</th><th class="n">Energy (Wh)</th>
-                <th class="n">Price (USDC/kWh)</th><th class="n">Charge (USDC)</th><th>Reading tx</th><th>Payment tx</th>
+                <th class="n">Price (USDC/kWh) <button type="button" id="price-info" class="info" aria-label="About the price" aria-describedby="price-tip" aria-expanded="false" aria-controls="price-tip">i</button></th><th class="n">Charge (USDC)</th><th>Reading tx</th><th>Payment tx</th>
               </tr>
             </thead>
             <tbody id="rows"></tbody>
           </table>
         </div>
+        <ul class="cards" id="cards"></ul>
+        <p class="price-note">Price: set by the oracle before each reading. In the demo the oracle lowers the price when supplied voltage THD exceeds 8% (EN 50160) and raises it when the consumer's power factor is below 0.95.</p>
       </section>
 
       <section aria-labelledby="h-con">
         <h2 id="h-con">Contracts</h2>
         <ul class="contracts" id="contracts"></ul>
+        <ul class="minor" id="contracts-minor"></ul>
       </section>
     </main>
 
     <footer class="wrap foot">
       <p>
-        <a href="https://github.com/b0gdaniy/defi-energy-supply/tree/feat/arc-mainnet">Repository</a>
-        <a href="https://github.com/b0gdaniy/defi-energy-supply/blob/feat/arc-mainnet/docs/Arc.md">Arc documentation</a>
+        <a href="https://github.com/b0gdaniy/defi-energy-supply/tree/feat/arc-mainnet">Source code</a>
+        <a href="https://github.com/b0gdaniy/defi-energy-supply/blob/feat/arc-mainnet/docs/Arc.md">Arc deployment docs</a>
       </p>
-      <p class="note">Research prototype, not audited. Demo readings are simulated.</p>
     </footer>
     <script type="module" src="/src/main.ts"></script>
   </body>

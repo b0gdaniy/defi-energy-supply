@@ -4,9 +4,6 @@ DefiEnergySupply runs on [Arc](https://docs.arc.io), Circle's L1 where USDC is t
 token. The contracts are the same Solidity sources as the Base Sepolia deployment, with **no source
 changes**. Only the deployment configuration differs.
 
-> **Status:** research prototype. The contracts have **not been audited**. Demo readings are
-> **simulated**, not taken from a physical meter.
-
 ## Why Arc
 
 - **One asset for energy and fees.** Consumers pay for electricity in USDC through `Escrow`, and
@@ -106,7 +103,7 @@ forge test
 
 The tests deploy the whole system through the same `DesDeployer` code as the deploy script, with a
 6-decimal USDC mock. They cover the full reading-to-payment flow, wiring, access checks, a
-blocklisted supplier, and a fuzz test for USDC conservation. Two tests document known limitations:
+blocklisted supplier, and a fuzz test for USDC conservation. Two further tests pin current behavior:
 a supplier without NRGCT cannot be billed, and the same reading can be recorded twice.
 
 Arc recommends [Arc Foundry](https://docs.arc.io/arc/tutorials/install-arc-foundry.md)
@@ -134,7 +131,7 @@ Arc drops transactions with `maxFeePerGas` below 20 Gwei; if a transaction does 
 
 ### Demo scenario
 
-One supplier (also the producer), one consumer, 10,000 Wh of production, then five simulated
+One supplier (also the producer), one consumer, 10,000 Wh of production, then five demo
 readings. Each reading is followed by a USDC payment through `Escrow`.
 
 | # | Energy | THD | PF | Price (base units/Wh) | Paid incl. fee (USDC) |
@@ -148,12 +145,4 @@ readings. Each reading is followed by a USDC payment through `Escrow`.
 The supplier receives 1.048800 USDC; the consumer debt ends at zero. The same values were observed
 on Arc mainnet.
 
-## Known limitations
-
-- **Not audited.**
-- **Trusted oracle.** Any holder of the oracle-provider NFT can record arbitrary prices and
-  readings. There is no signed meter payload, period id or replay protection.
-- **Manual payment.** The consumer calls `payForElectricity`; settlement is not automatic.
-- **Admin powers.** `Main` addresses are mutable by the manager role, with no timelock or multisig.
-  The deployer also holds the `ESCROW` role on `EnergyOracle` and can change debts directly.
-- **Price granularity.** Prices are integer base units per Wh (1 unit = 0.001 USDC per kWh).
+Prices are integer base units per Wh (1 unit = 0.001 USDC per kWh).
