@@ -1,0 +1,15 @@
+staging-base:
+  user-workflow:
+    workflow-name: "des-reading-base"
+  workflow-artifacts:
+    workflow-path: "./main.ts"
+    config-path: "./config.base.json"
+    secrets-path: ""
+
+staging-arc:
+  user-workflow:
+    workflow-name: "des-reading-arc"
+  workflow-artifacts:
+    workflow-path: "./main.ts"
+    config-path: "./config.arc.json"
+    secrets-path: ""

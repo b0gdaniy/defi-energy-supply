@@ -1,0 +1,12 @@
+{
+  "name": "des-cre-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "digest-vector": "bun run digest-vector.ts"
+  },
+  "dependencies": {
+    "viem": "2.34.0"
+  }
+}

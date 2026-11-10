@@ -20,3 +20,85 @@ deployed/demo_accounts_*.json
 out/
 cache_forge/
 broadcast/*/31337/
+
+# BEGIN migration-secrets-ignore
+# env and credentials
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+*.env
+.envrc.local
+.netrc
+.npmrc
+.pypirc
+.aws/
+.ssh/
+.gnupg/
+.sui/
+credentials*
+*credentials.json
+secrets*
+*.secret
+*.secrets
+*.token
+*token*.json
+service-account*.json
+*serviceaccount*.json
+client_secret*.json
+# keys, wallets, seeds
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+keystore/
+keystores/
+id_rsa*
+id_ed25519*
+id_ecdsa*
+*.gpg
+*.asc
+wallet*.json
+*wallet*.dat
+*mnemonic*
+*seed-phrase*
+*seed_phrase*
+*private_key*
+*privatekey*
+*.ledger
+# local state, data, logs
+*.sqlite
+*.sqlite3
+*.db
+*.log
+logs/
+*.parquet
+*.pickle
+*.pkl
+data/raw/
+# build and deps
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+target/
+.next/
+.cache/
+.turbo/
+dist/
+build/
+cache/
+cache_hardhat/
+artifacts/
+broadcast/**/dry-run/
+coverage/
+# os and editor
+.DS_Store
+.idea/
+*.swp
+.history/
+# END migration-secrets-ignore

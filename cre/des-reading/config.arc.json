@@ -1,0 +1,14 @@
+{
+  "schedule": "0 * * * * *",
+  "meterApiUrl": "http://localhost:8787",
+  "meterId": "0x3d3fd68e62fe55c5ace7e50c015bf9462f804a23aa7b08589932f304186e8ab6",
+  "meterSigner": "0x037D2F822e81812Fc2Fd15ac25793741Df3B0570",
+  "consumer": "0x000000000000000000000000000000000000dEaD",
+  "supplierId": "1",
+  "chainName": "arc-testnet",
+  "chainId": 5042002,
+  "chainSelector": "3034092155422581607",
+  "receiverAddress": "0x0000000000000000000000000000000000000000",
+  "policyHash": "0xb7ac31c3a7df955e9c91398a82e7d17dfa24e72fa368175c91977ef889e9f266",
+  "gasLimit": "1500000"
+}

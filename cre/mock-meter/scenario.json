@@ -1,0 +1,9 @@
+{
+  "label": "SIMULATED meter data, not real measurements",
+  "cycle": [
+    { "name": "normal", "energyWh": 1500, "thdBps": 300, "pfBps": 9800 },
+    { "name": "high-thd", "energyWh": 1500, "thdBps": 1200, "pfBps": 9800 },
+    { "name": "low-pf", "energyWh": 1500, "thdBps": 300, "pfBps": 9000 },
+    { "name": "high-thd-and-low-pf", "energyWh": 1500, "thdBps": 1200, "pfBps": 9000 }
+  ]
+}

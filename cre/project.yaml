@@ -1,0 +1,11 @@
+# CRE project settings. One target per chain; each target selects a workflow config file in des-reading/workflow.yaml.
+# Official rpc.testnet.arc.network geo-blocks some regions (Cloudflare 1009, seen from Ukraine), so Arc uses dRPC.
+staging-base:
+  rpcs:
+    - chain-name: ethereum-testnet-sepolia-base-1
+      url: https://sepolia.base.org
+
+staging-arc:
+  rpcs:
+    - chain-name: arc-testnet
+      url: https://arc-testnet.drpc.org
